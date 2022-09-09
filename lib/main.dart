@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:travelapp/screen/home/view/home_view.dart';
+import 'package:travelapp/screen/home/viewmodel/home_viewmodel.dart';
 import 'package:travelapp/screen/onboarding/view/onboarding_view.dart';
 
 void main() {
@@ -10,10 +13,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Travel App',
-      home: OnBoardingView(),
+      home: ChangeNotifierProvider(
+        create: (context) => HomeViewModel(),
+        child: HomeView(),
+      ),
     );
   }
 }
