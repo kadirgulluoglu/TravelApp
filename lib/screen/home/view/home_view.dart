@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:travelapp/screen/home/viewmodel/home_viewmodel.dart';
+
+import '../../homepage/view/home_page_view.dart';
+import '../viewmodel/home_viewmodel.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -10,11 +12,21 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  final List _pages = [
+    HomePageView(),
+    Center(
+        child: Text(
+      "Keşfet",
+      style: TextStyle(fontSize: 45),
+    )),
+    Container(color: Colors.redAccent),
+    Container(color: Colors.blueGrey),
+  ];
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<HomeViewModel>(context);
     return Scaffold(
-      body: viewModel.pages[viewModel.currentIndex],
+      body: _pages[viewModel.currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: viewModel.onTapBottomBar,
         currentIndex: viewModel.currentIndex,
