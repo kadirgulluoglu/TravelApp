@@ -82,11 +82,14 @@ class _DetailPageViewState extends State<DetailPageView> {
                                     "",
                                 color: Colors.black.withOpacity(0.8),
                               ),
-                              CustomLargeText(
-                                text:
-                                    viewModel.placeList?[widget.index].price ??
-                                        "",
-                                color: CustomColor.mainColor,
+                              FittedBox(
+                                child: CustomLargeText(
+                                  text: viewModel
+                                          .placeList?[widget.index].price ??
+                                      "",
+                                  color: CustomColor.mainColor,
+                                  size: 22,
+                                ),
                               ),
                             ],
                           ),
@@ -171,19 +174,20 @@ class _DetailPageViewState extends State<DetailPageView> {
                                       !viewModel.isFavoriteButton;
                                 },
                                 child: Container(
-                                    width: 60,
-                                    height: 60,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
-                                        color: viewModel.isFavoriteButton
-                                            ? CustomColor.mainColor
-                                            : CustomColor.buttonBackground),
-                                    child: viewModel.isFavoriteButton
-                                        ? Icon(
-                                            Icons.favorite,
-                                            color: Colors.white,
-                                          )
-                                        : Icon(Icons.favorite_outline)),
+                                  width: 60,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: viewModel.isFavoriteButton
+                                          ? CustomColor.mainColor
+                                          : CustomColor.buttonBackground),
+                                  child: viewModel.isFavoriteButton
+                                      ? Icon(
+                                          Icons.favorite,
+                                          color: Colors.white,
+                                        )
+                                      : Icon(Icons.favorite_outline),
+                                ),
                               ),
                               ResponsiveButton(width: 250),
                             ],
