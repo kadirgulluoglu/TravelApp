@@ -36,12 +36,12 @@ class _HomePageViewState extends State<HomePageView>
               children: [
                 _buildProfilePictureAndMenuIcon(),
                 _buildTextDiscover(),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildTabBar(),
                 _buildTabBarView(viewModel),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 _buildDiscoverAllText(),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildDiscoverAllItem()
               ],
             ),
@@ -67,13 +67,13 @@ class _HomePageViewState extends State<HomePageView>
   Container _buildDiscoverAllItem() {
     return Container(
       height: 100,
-      margin: EdgeInsets.only(left: 20),
+      margin: const EdgeInsets.only(left: 20),
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: image.length,
           itemBuilder: (context, index) {
             return Container(
-              margin: EdgeInsets.only(right: 40),
+              margin: const EdgeInsets.only(right: 40),
               child: Column(
                 children: [
                   Container(
@@ -85,17 +85,15 @@ class _HomePageViewState extends State<HomePageView>
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10), // Image border
                       child: SizedBox.fromSize(
-                        size: Size.fromRadius(30), // Image radius
+                        size: const Size.fromRadius(30), // Image radius
                         child: Image.asset(
                             'assets/images/${image.keys.elementAt(index)}.png',
                             fit: BoxFit.cover),
                       ),
                     ),
                   ),
-                  Container(
-                    child: CustomText(
-                      text: image.values.elementAt(index),
-                    ),
+                  CustomText(
+                    text: image.values.elementAt(index),
                   )
                 ],
               ),
@@ -119,7 +117,7 @@ class _HomePageViewState extends State<HomePageView>
 
   Container _buildTabBarView(HomePageViewModel viewModel) {
     return Container(
-      padding: EdgeInsets.only(left: 20),
+      padding: const EdgeInsets.only(left: 20),
       height: 270,
       width: double.maxFinite,
       child: TabBarView(
@@ -133,51 +131,48 @@ class _HomePageViewState extends State<HomePageView>
     );
   }
 
-  Container _buildTabBar() {
-    return Container(
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: TabBar(
-          labelPadding: EdgeInsets.only(left: 20, right: 20),
-          labelColor: Colors.black,
-          controller: _tabController,
-          unselectedLabelColor: Colors.grey,
-          indicatorSize: TabBarIndicatorSize.label,
-          isScrollable: true,
-          indicator:
-              CircleTabIndicator(radius: 4, color: CustomColor.mainColor),
-          tabs: [
-            Tab(text: "Yerler"),
-            Tab(text: "Seyahat"),
-            Tab(text: "Diğerleri"),
-          ],
-        ),
+  Align _buildTabBar() {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: TabBar(
+        labelPadding: const EdgeInsets.only(left: 20, right: 20),
+        labelColor: Colors.black,
+        controller: _tabController,
+        unselectedLabelColor: Colors.grey,
+        indicatorSize: TabBarIndicatorSize.label,
+        isScrollable: true,
+        indicator: CircleTabIndicator(radius: 4, color: CustomColor.mainColor),
+        tabs: const [
+          Tab(text: "Yerler"),
+          Tab(text: "Seyahat"),
+          Tab(text: "Diğerleri"),
+        ],
       ),
     );
   }
 
   Container _buildTextDiscover() {
     return Container(
-        margin: EdgeInsets.only(left: 20),
+        margin: const EdgeInsets.only(left: 20),
         child: CustomLargeText(text: "Dünyayı Keşfet"));
   }
 
   Container _buildProfilePictureAndMenuIcon() {
     return Container(
-      padding: EdgeInsets.only(top: 70, left: 20),
+      padding: const EdgeInsets.only(top: 70, left: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(Icons.menu, size: 30, color: Colors.black54),
+          const Icon(Icons.menu, size: 30, color: Colors.black54),
           Expanded(child: Container()),
           Container(
-            margin: EdgeInsets.only(right: 20),
+            margin: const EdgeInsets.only(right: 20),
             width: 50,
             height: 50,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10), // Image border
               child: SizedBox.fromSize(
-                size: Size.fromRadius(10), // Image radius
+                size: const Size.fromRadius(10), // Image radius
                 child: Image.network('https://picsum.photos/200',
                     fit: BoxFit.cover),
               ),
@@ -206,7 +201,7 @@ class _HomePageViewState extends State<HomePageView>
             ));
           },
           child: Container(
-            padding: EdgeInsets.only(right: 15, top: 10),
+            padding: const EdgeInsets.only(right: 15, top: 10),
             width: 205,
             height: 300,
             decoration: BoxDecoration(
@@ -215,7 +210,7 @@ class _HomePageViewState extends State<HomePageView>
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10), // Image border
               child: SizedBox.fromSize(
-                size: Size.fromRadius(30), // Image radius
+                size: const Size.fromRadius(30), // Image radius
                 child: Stack(
                   children: [
                     Positioned.fill(

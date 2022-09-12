@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:denemefirebaseauth/product/compenents/custom_elevated_button.dart';
 import 'package:denemefirebaseauth/screens/auth/viewmodel/auth_viewmodel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -128,8 +129,8 @@ class _RegisterViewState extends State<RegisterView> {
           decoration: BoxDecoration(
               color: CustomColor.mainColor,
               borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                const BoxShadow(
+              boxShadow: const [
+                BoxShadow(
                   color: Colors.black26,
                   blurRadius: 6,
                   offset: Offset(0, 2),
@@ -182,8 +183,8 @@ class _RegisterViewState extends State<RegisterView> {
           decoration: BoxDecoration(
               color: CustomColor.mainColor,
               borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                const BoxShadow(
+              boxShadow: const [
+                BoxShadow(
                   color: Colors.black26,
                   blurRadius: 6,
                   offset: Offset(0, 2),
@@ -239,8 +240,8 @@ class _RegisterViewState extends State<RegisterView> {
           decoration: BoxDecoration(
               color: CustomColor.mainColor,
               borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                const BoxShadow(
+              boxShadow: const [
+                BoxShadow(
                   color: Colors.black26,
                   blurRadius: 6,
                   offset: Offset(0, 2),
@@ -296,8 +297,8 @@ class _RegisterViewState extends State<RegisterView> {
           decoration: BoxDecoration(
               color: CustomColor.mainColor,
               borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                const BoxShadow(
+              boxShadow: const [
+                BoxShadow(
                   color: Colors.black26,
                   blurRadius: 6,
                   offset: Offset(0, 2),
@@ -336,18 +337,11 @@ class _RegisterViewState extends State<RegisterView> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25),
       width: double.infinity,
-      child: RaisedButton(
-        elevation: 5,
-        child: const Text('Kayıt Ol',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+      child: CustomElevatedButton(
         onPressed: () {
           signUp(viewModel, emailController.text, passwordController.text);
         },
-        padding: const EdgeInsets.all(15),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        color: CustomColor.mainColor,
+        title: 'Kayıt Ol',
       ),
     );
   }

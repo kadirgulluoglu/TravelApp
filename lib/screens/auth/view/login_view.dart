@@ -1,3 +1,4 @@
+import 'package:denemefirebaseauth/product/compenents/custom_elevated_button.dart';
 import 'package:denemefirebaseauth/screens/auth/view/register_view.dart';
 import 'package:denemefirebaseauth/screens/auth/viewmodel/auth_viewmodel.dart';
 import 'package:denemefirebaseauth/screens/home/view/home_view.dart';
@@ -77,7 +78,7 @@ class _LoginViewState extends State<LoginView> {
                     buildEposta(),
                     SizedBox(height: size.height * 0.02),
                     buildPassword(viewModel),
-                    buildSifrenimiunuttun(),
+                    _buildForgotPassword(),
                     buildRememberMe(viewModel),
                     SizedBox(height: size.height * 0.02),
                     viewModel.isLoading
@@ -235,17 +236,17 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  Widget buildSifrenimiunuttun() {
+  Widget _buildForgotPassword() {
     return Container(
       alignment: Alignment.centerRight,
-      child: FlatButton(
+      child: TextButton(
+        style: TextButton.styleFrom(padding: const EdgeInsets.only(right: 0)),
         onPressed: () {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const ForgotPassword()),
           );
         },
-        padding: const EdgeInsets.only(right: 0),
         child: Text(
           'Şifremi Unuttum',
           style: TextStyle(
@@ -291,18 +292,11 @@ class _LoginViewState extends State<LoginView> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25),
       width: double.infinity,
-      child: RaisedButton(
-        elevation: 5,
+      child: CustomElevatedButton(
         onPressed: () {
           login(viewModel, _emailController.text, _passwordController.text);
         },
-        padding: const EdgeInsets.all(15),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        color: CustomColor.mainColor,
-        child: const Text('Giriş',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        title: 'Giriş',
       ),
     );
   }
@@ -313,7 +307,7 @@ class _LoginViewState extends State<LoginView> {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => ChangeNotifierProvider<AuthViewModel>.value(
             value: viewModel,
-            child: RegisterView(),
+            child: const RegisterView(),
           ),
         ));
       },

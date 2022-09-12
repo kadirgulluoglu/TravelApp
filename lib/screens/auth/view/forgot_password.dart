@@ -1,5 +1,6 @@
 import 'package:denemefirebaseauth/init/theme/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPassword extends StatefulWidget {
@@ -78,16 +79,18 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25),
       width: double.infinity,
-      child: RaisedButton(
-        elevation: 5,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          elevation: 5,
+          primary: CustomColor.mainColor,
+          padding: const EdgeInsets.all(15),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+        ),
         onPressed: () {
           resetPassword();
         },
-        padding: const EdgeInsets.all(15),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        color: CustomColor.mainColor,
         child: const Text('Şifremi Sıfırla',
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
       ),
@@ -182,8 +185,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
       Navigator.of(context).popUntil((route) => route.isFirst);
     } on FirebaseAuthException catch (e) {
-      print(e);
       Navigator.of(context).pop();
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 }

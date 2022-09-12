@@ -18,7 +18,7 @@ class _HomeViewState extends State<HomeView> {
       create: (context) => HomePageViewModel(),
       child: const HomePageView(),
     ),
-    Center(
+    const Center(
         child: Text(
       "Keşfet",
       style: TextStyle(fontSize: 45),
@@ -39,7 +39,7 @@ class _HomeViewState extends State<HomeView> {
         showUnselectedLabels: false,
         showSelectedLabels: false,
         elevation: 0,
-        items: [
+        items: const [
           BottomNavigationBarItem(label: "Ana Sayfa", icon: Icon(Icons.apps)),
           BottomNavigationBarItem(label: "Bar", icon: Icon(Icons.explore)),
           BottomNavigationBarItem(label: "Ara", icon: Icon(Icons.search)),

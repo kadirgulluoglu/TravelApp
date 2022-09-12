@@ -52,7 +52,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                           size: 30,
                         ),
                         const SizedBox(height: 20),
-                        Container(
+                        SizedBox(
                           width: 250,
                           child: CustomText(
                             text: subtitle[index],
@@ -67,7 +67,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                     Column(
                       children: List.generate(images.length, (indexDots) {
                         return Container(
-                          margin: EdgeInsets.only(bottom: 2),
+                          margin: const EdgeInsets.only(bottom: 2),
                           width: 8,
                           height: index == indexDots ? 25 : 8,
                           decoration: BoxDecoration(
