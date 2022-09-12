@@ -1,10 +1,4 @@
 import 'package:denemefirebaseauth/screens/auth/viewmodel/auth_viewmodel.dart';
-import 'package:denemefirebaseauth/screens/home/view/home_view.dart';
-import 'package:denemefirebaseauth/screens/home/viewmodel/home_viewmodel.dart';
-import 'package:denemefirebaseauth/screens/home_page.dart';
-import 'package:denemefirebaseauth/screens/homepage/view/details_page_view.dart';
-import 'package:denemefirebaseauth/screens/homepage/view/home_page_view.dart';
-import 'package:denemefirebaseauth/screens/homepage/viewmodel/home_page_viewmodel.dart';
 import 'package:denemefirebaseauth/screens/onboarding/view/onboarding_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +29,8 @@ class MyApp extends StatelessWidget {
       home: rememberme
           ? const OnBoardingView()
           : ChangeNotifierProvider(
-              create: (context) => HomeViewModel(),
-              child: const HomeView(),
+              create: (context) => AuthViewModel(),
+              child: const LoginView(),
             ),
     );
   }
