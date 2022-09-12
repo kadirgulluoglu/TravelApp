@@ -50,10 +50,8 @@ class HomePageViewModel with ChangeNotifier {
       state = ViewState.busy;
       List response = await _service.getPlaces();
       placeList = response.map((e) => e as HomePageModel).toList();
-      print(placeList?[0].name ?? "Null");
       state = ViewState.idle;
     } catch (e) {
-      print(e);
       state = ViewState.error;
     }
   }
