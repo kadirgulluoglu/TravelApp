@@ -94,32 +94,99 @@ class _HomePageViewState extends State<HomePageView>
               children: [
                 ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 20,
+                  itemCount: viewModel.placeList?.length ?? 0,
                   itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      padding: EdgeInsets.only(right: 15, top: 10),
-                      width: 200,
-                      height: 300,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10), // Image border
-                        child: SizedBox.fromSize(
-                          size: Size.fromRadius(30), // Image radius
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => ChangeNotifierProvider<
-                                    HomePageViewModel>.value(
-                                  value: viewModel,
-                                  child: DetailPageView(),
+                    return InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              ChangeNotifierProvider<HomePageViewModel>.value(
+                            value: viewModel,
+                            child: DetailPageView(),
+                          ),
+                        ));
+                      },
+                      child: Container(
+                        padding: EdgeInsets.only(right: 15, top: 10),
+                        width: 205,
+                        height: 300,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: ClipRRect(
+                          borderRadius:
+                              BorderRadius.circular(10), // Image border
+                          child: SizedBox.fromSize(
+                            size: Size.fromRadius(30), // Image radius
+                            child: Stack(
+                              children: [
+                                Positioned.fill(
+                                  child: Image.network(
+                                    viewModel.placeList?[index].image ?? "",
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ));
-                            },
-                            child: Image.network(
-                                'https://picsum.photos/40' + index.toString(),
-                                fit: BoxFit.cover),
+                                Container(
+                                  color: Colors.black.withOpacity(0.5),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      CustomLargeText(
+                                        text:
+                                            viewModel.placeList?[index].name ??
+                                                "",
+                                        color: Colors.white,
+                                        size: 30,
+                                      ),
+                                      Column(
+                                        children: [
+                                          CustomLargeText(
+                                            text:
+                                                "${viewModel.placeList?[index].price.toString()}",
+                                            color: Colors.white,
+                                            size: 16,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Wrap(
+                                                children: List.generate(
+                                                  5,
+                                                  (count) {
+                                                    return Icon(
+                                                      count <
+                                                              viewModel
+                                                                  .placeList![
+                                                                      index]
+                                                                  .stars!
+                                                          ? Icons.star
+                                                          : Icons.star_border,
+                                                      color:
+                                                          CustomColor.starColor,
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                              CustomLargeText(
+                                                text:
+                                                    "(${viewModel.placeList?[index].stars.toString()}.0)",
+                                                color: Colors.white,
+                                                size: 16,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
