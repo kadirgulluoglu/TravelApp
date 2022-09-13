@@ -24,8 +24,8 @@ class HomeViewModel with ChangeNotifier {
 
   final List<Widget> _pages = [
     HomePageView(),
-    Center(child: Text("Keşfet")),
     FavoriteView(),
+    Center(child: Text("Keşfet")),
     Container(color: Colors.blueGrey),
   ];
 
