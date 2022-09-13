@@ -12,8 +12,9 @@ class HomeView extends StatefulWidget {
   State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
-  final List _pages = [
+class _HomeViewState extends State<HomeView>
+    with AutomaticKeepAliveClientMixin<HomeView> {
+  final List<Widget> _pages = [
     ChangeNotifierProvider(
       create: (context) => HomePageViewModel(),
       child: const HomePageView(),
@@ -28,9 +29,13 @@ class _HomeViewState extends State<HomeView> {
   ];
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final viewModel = Provider.of<HomeViewModel>(context);
     return Scaffold(
-      body: _pages[viewModel.currentIndex],
+      body: IndexedStack(
+        children: _pages,
+        index: viewModel.currentIndex,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: viewModel.onTapBottomBar,
         currentIndex: viewModel.currentIndex,
@@ -48,4 +53,7 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
