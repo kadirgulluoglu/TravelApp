@@ -7,7 +7,7 @@ class HomePageService extends IHomePageService {
   @override
   Future getPlaces() async {
     return await NetworkManager.instance!.dioGet(
-      "/8428cf7e-5ce2-4dec-af8d-a0ec2c94c679",
+      "/9cfc4f2e-7842-4b7a-89b3-a8c85e8bdf82",
       model: HomePageModel(),
     );
   }
