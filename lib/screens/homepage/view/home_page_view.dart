@@ -123,9 +123,9 @@ class _HomePageViewState extends State<HomePageView>
       child: TabBarView(
         controller: _tabController,
         children: [
-          buildListView(viewModel),
-          buildListView(viewModel),
-          buildListView(viewModel),
+          buildListView(viewModel, 0),
+          buildListView(viewModel, 1),
+          buildListView(viewModel, 2),
         ],
       ),
     );
@@ -183,101 +183,104 @@ class _HomePageViewState extends State<HomePageView>
     );
   }
 
-  ListView buildListView(HomePageViewModel viewModel) {
+  ListView buildListView(HomePageViewModel viewModel, int type) {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
       itemCount: viewModel.placeList!.length,
       itemBuilder: (BuildContext context, int index) {
-        return InkWell(
-          onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) =>
-                  ChangeNotifierProvider<HomePageViewModel>.value(
-                value: viewModel,
-                child: DetailPageView(
-                  index: index,
-                ),
-              ),
-            ));
-          },
-          child: Container(
-            padding: const EdgeInsets.only(right: 15, top: 10),
-            width: 205,
-            height: 300,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10), // Image border
-              child: SizedBox.fromSize(
-                size: const Size.fromRadius(30), // Image radius
-                child: Stack(
-                  children: [
-                    Positioned.fill(
-                      child: Image.network(
-                        viewModel.placeList?[index].image ?? "",
-                        fit: BoxFit.cover,
+        return viewModel.placeList?[index].type == type
+            ? InkWell(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) =>
+                        ChangeNotifierProvider<HomePageViewModel>.value(
+                      value: viewModel,
+                      child: DetailPageView(
+                        index: index,
                       ),
                     ),
-                    Container(
-                      color: Colors.black.withOpacity(0.5),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  ));
+                },
+                child: Container(
+                  padding: const EdgeInsets.only(right: 15, top: 10),
+                  width: 205,
+                  height: 300,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10), // Image border
+                    child: SizedBox.fromSize(
+                      size: const Size.fromRadius(30), // Image radius
+                      child: Stack(
                         children: [
-                          CustomLargeText(
-                            text: viewModel.placeList?[index].name ?? "",
-                            color: Colors.white,
-                            size: 30,
+                          Positioned.fill(
+                            child: Image.network(
+                              viewModel.placeList?[index].image ?? "",
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomLargeText(
-                                text:
-                                    "${viewModel.placeList?[index].price.toString()}",
-                                color: Colors.white,
-                                size: 16,
-                              ),
-                              Row(
-                                children: [
-                                  Wrap(
-                                    children: List.generate(
-                                      5,
-                                      (count) {
-                                        return Icon(
-                                          count <
-                                                  viewModel
-                                                      .placeList![index].stars!
-                                              ? Icons.star
-                                              : Icons.star_border,
-                                          color: CustomColor.starColor,
-                                        );
-                                      },
+                          Container(
+                            color: Colors.black.withOpacity(0.5),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                CustomLargeText(
+                                  text: viewModel.placeList?[index].name ?? "",
+                                  color: Colors.white,
+                                  size: 30,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    CustomLargeText(
+                                      text:
+                                          "${viewModel.placeList?[index].price.toString()}",
+                                      color: Colors.white,
+                                      size: 16,
                                     ),
-                                  ),
-                                  CustomLargeText(
-                                    text:
-                                        "(${viewModel.placeList?[index].stars.toString()}.0)",
-                                    color: Colors.white,
-                                    size: 16,
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    Row(
+                                      children: [
+                                        Wrap(
+                                          children: List.generate(
+                                            5,
+                                            (count) {
+                                              return Icon(
+                                                count <
+                                                        viewModel
+                                                            .placeList![index]
+                                                            .stars!
+                                                    ? Icons.star
+                                                    : Icons.star_border,
+                                                color: CustomColor.starColor,
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                        CustomLargeText(
+                                          text:
+                                              "(${viewModel.placeList?[index].stars.toString()}.0)",
+                                          color: Colors.white,
+                                          size: 16,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-          ),
-        );
+              )
+            : const SizedBox.shrink();
       },
     );
   }
