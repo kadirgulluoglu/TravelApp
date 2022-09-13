@@ -1,24 +1,27 @@
 import 'package:denemefirebaseauth/models/base_model.dart';
 
 class HomePageModel extends BaseModel {
-  int? placeId;
-  String? name;
-  int? type;
-  int? stars;
-  String? price;
-  String? city;
-  String? image;
-  String? body;
+  final int? placeId;
+  final String? name;
+  final int? type;
+  final int? stars;
+  final String? price;
+  final String? city;
+  final String? image;
+  final String? body;
+  bool? isFavorite;
 
-  HomePageModel(
-      {this.placeId,
-      this.name,
-      this.type,
-      this.stars,
-      this.price,
-      this.city,
-      this.image,
-      this.body});
+  HomePageModel({
+    this.placeId,
+    this.name,
+    this.type,
+    this.stars,
+    this.price,
+    this.city,
+    this.image,
+    this.body,
+    this.isFavorite = false,
+  });
 
   @override
   fromJson(Map<String, dynamic> map) => HomePageModel(
