@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/compenents/large_text.dart';
 import '../../../core/compenents/text.dart';
 import '../../../init/theme/colors.dart';
 import '../../../product/compenents/app_button.dart';
+import '../../../product/compenents/custom_snackbar.dart';
 import '../../../product/compenents/responsive_button.dart';
 import '../../home/viewmodel/home_viewmodel.dart';
 
@@ -101,7 +103,15 @@ class _DetailPageViewState extends State<DetailPageView> {
                 : const Icon(Icons.favorite_outline),
           ),
         ),
-        ResponsiveButton(width: 250),
+        ResponsiveButton(
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(CustomSnackBar(
+                contentText: "İşlem Başarılı!!",
+                color: CustomColor.mainColor,
+              ));
+              Navigator.of(context).pop();
+            },
+            width: 250),
       ],
     );
   }
@@ -204,14 +214,19 @@ class _DetailPageViewState extends State<DetailPageView> {
       top: 40,
       child: Row(
         children: [
-          IconButton(
-            icon: const Icon(
-              Icons.close,
-              color: Colors.white,
+          Container(
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: CustomColor.mainColor.withOpacity(0.5)),
+            child: IconButton(
+              icon: const Icon(
+                Icons.close,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
           )
         ],
       ),
