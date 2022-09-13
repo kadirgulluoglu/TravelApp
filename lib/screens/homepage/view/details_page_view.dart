@@ -6,7 +6,7 @@ import '../../../core/compenents/text.dart';
 import '../../../init/theme/colors.dart';
 import '../../../product/compenents/app_button.dart';
 import '../../../product/compenents/responsive_button.dart';
-import '../viewmodel/home_page_viewmodel.dart';
+import '../../home/viewmodel/home_viewmodel.dart';
 
 class DetailPageView extends StatefulWidget {
   const DetailPageView({Key? key, required this.index}) : super(key: key);
@@ -19,7 +19,7 @@ class DetailPageView extends StatefulWidget {
 class _DetailPageViewState extends State<DetailPageView> {
   @override
   Widget build(BuildContext context) {
-    final viewModel = Provider.of<HomePageViewModel>(context);
+    final viewModel = Provider.of<HomeViewModel>(context);
     return Scaffold(
       body: Stack(
         children: [
@@ -31,8 +31,7 @@ class _DetailPageViewState extends State<DetailPageView> {
     );
   }
 
-  Positioned _buildPlaceDetails(
-      BuildContext context, HomePageViewModel viewModel) {
+  Positioned _buildPlaceDetails(BuildContext context, HomeViewModel viewModel) {
     return Positioned.fill(
       top: 300,
       child: Container(
@@ -74,23 +73,27 @@ class _DetailPageViewState extends State<DetailPageView> {
     );
   }
 
-  Row _buildFavIconAndCustomButton(HomePageViewModel viewModel) {
+  Row _buildFavIconAndCustomButton(HomeViewModel viewModel) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         InkWell(
           onTap: () {
-            viewModel.isFavoriteButton = !viewModel.isFavoriteButton;
+            if (viewModel.placeList![widget.index].isFavorite == false) {
+              viewModel.addFavorite(widget.index);
+            } else {
+              viewModel.removeFavorite(widget.index);
+            }
           },
           child: Container(
             width: 60,
             height: 60,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: viewModel.isFavoriteButton
+                color: viewModel.placeList![widget.index].isFavorite!
                     ? CustomColor.mainColor
                     : CustomColor.buttonBackground),
-            child: viewModel.isFavoriteButton
+            child: viewModel.placeList![widget.index].isFavorite!
                 ? const Icon(
                     Icons.favorite,
                     color: Colors.white,
@@ -103,11 +106,11 @@ class _DetailPageViewState extends State<DetailPageView> {
     );
   }
 
-  CustomText _buildPlaceSubtitle(HomePageViewModel viewModel) {
+  CustomText _buildPlaceSubtitle(HomeViewModel viewModel) {
     return CustomText(text: viewModel.placeList?[widget.index].body ?? "");
   }
 
-  Wrap _buildPeopleNumberButton(HomePageViewModel viewModel) {
+  Wrap _buildPeopleNumberButton(HomeViewModel viewModel) {
     return Wrap(
         children: List.generate(5, (index) {
       return InkWell(
@@ -130,7 +133,7 @@ class _DetailPageViewState extends State<DetailPageView> {
     }));
   }
 
-  Row _buildStars(HomePageViewModel viewModel) {
+  Row _buildStars(HomeViewModel viewModel) {
     return Row(
       children: [
         Wrap(
@@ -152,7 +155,7 @@ class _DetailPageViewState extends State<DetailPageView> {
     );
   }
 
-  Row _buildPlaceCity(HomePageViewModel viewModel) {
+  Row _buildPlaceCity(HomeViewModel viewModel) {
     return Row(
       children: [
         Icon(Icons.location_on, color: CustomColor.mainColor),
@@ -164,7 +167,7 @@ class _DetailPageViewState extends State<DetailPageView> {
     );
   }
 
-  Row _buildPlaceNameAndPrice(HomePageViewModel viewModel) {
+  Row _buildPlaceNameAndPrice(HomeViewModel viewModel) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -215,7 +218,7 @@ class _DetailPageViewState extends State<DetailPageView> {
     );
   }
 
-  Positioned _buildImage(HomePageViewModel viewModel) {
+  Positioned _buildImage(HomeViewModel viewModel) {
     return Positioned(
       left: 0,
       right: 0,

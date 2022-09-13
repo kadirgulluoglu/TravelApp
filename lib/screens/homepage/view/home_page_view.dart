@@ -8,6 +8,7 @@ import '../../../core/compenents/large_text.dart';
 import '../../../core/compenents/text.dart';
 import '../../../init/theme/colors.dart';
 import '../../../product/compenents/circle_tab_indicator.dart';
+import '../../home/viewmodel/home_viewmodel.dart';
 
 class HomePageView extends StatefulWidget {
   const HomePageView({Key? key}) : super(key: key);
@@ -21,14 +22,13 @@ class _HomePageViewState extends State<HomePageView>
   late TabController _tabController;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = Provider.of<HomePageViewModel>(context);
+    final viewModel = Provider.of<HomeViewModel>(context);
     return viewModel.state == ViewState.idle
         ? Scaffold(
             body: Column(
@@ -115,7 +115,7 @@ class _HomePageViewState extends State<HomePageView>
     );
   }
 
-  Container _buildTabBarView(HomePageViewModel viewModel) {
+  Container _buildTabBarView(HomeViewModel viewModel) {
     return Container(
       padding: const EdgeInsets.only(left: 20),
       height: 270,
@@ -183,7 +183,7 @@ class _HomePageViewState extends State<HomePageView>
     );
   }
 
-  ListView buildListView(HomePageViewModel viewModel, int type) {
+  ListView buildListView(HomeViewModel viewModel, int type) {
     return ListView.builder(
       scrollDirection: Axis.horizontal,
       itemCount: viewModel.placeList!.length,
@@ -193,7 +193,7 @@ class _HomePageViewState extends State<HomePageView>
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) =>
-                        ChangeNotifierProvider<HomePageViewModel>.value(
+                        ChangeNotifierProvider<HomeViewModel>.value(
                       value: viewModel,
                       child: DetailPageView(
                         index: index,
