@@ -1,8 +1,6 @@
-import 'package:denemefirebaseauth/screens/homepage/viewmodel/home_page_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../homepage/view/home_page_view.dart';
 import '../viewmodel/home_viewmodel.dart';
 
 class HomeView extends StatefulWidget {
@@ -12,30 +10,13 @@ class HomeView extends StatefulWidget {
   State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView>
-    with AutomaticKeepAliveClientMixin<HomeView> {
-  final List<Widget> _pages = [
-    ChangeNotifierProvider(
-      create: (context) => HomePageViewModel(),
-      child: const HomePageView(),
-    ),
-    const Center(
-        child: Text(
-      "Keşfet",
-      style: TextStyle(fontSize: 45),
-    )),
-    Container(color: Colors.redAccent),
-    Container(color: Colors.blueGrey),
-  ];
+class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     final viewModel = Provider.of<HomeViewModel>(context);
     return Scaffold(
       body: IndexedStack(
-        children: _pages,
-        index: viewModel.currentIndex,
-      ),
+          children: viewModel.pages, index: viewModel.currentIndex),
       bottomNavigationBar: BottomNavigationBar(
         onTap: viewModel.onTapBottomBar,
         currentIndex: viewModel.currentIndex,
@@ -53,7 +34,4 @@ class _HomeViewState extends State<HomeView>
       ),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
