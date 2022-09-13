@@ -25,13 +25,20 @@ class _HomeViewState extends State<HomeView> {
         showUnselectedLabels: false,
         showSelectedLabels: false,
         elevation: 0,
-        items: const [
-          BottomNavigationBarItem(label: "Ana Sayfa", icon: Icon(Icons.apps)),
-          BottomNavigationBarItem(label: "Bar", icon: Icon(Icons.explore)),
-          BottomNavigationBarItem(label: "Ara", icon: Icon(Icons.search)),
-          BottomNavigationBarItem(label: "Profil", icon: Icon(Icons.person)),
+        items: [
+          _buildBottomItem("Ana Sayfa", Icons.home),
+          _buildBottomItem("Favori", Icons.favorite),
+          _buildBottomItem("Ara", Icons.search),
+          _buildBottomItem("Profil", Icons.person),
         ],
       ),
     );
   }
+
+  BottomNavigationBarItem _buildBottomItem(String title, IconData icon) =>
+      BottomNavigationBarItem(
+          label: title,
+          icon: Icon(
+            icon,
+          ));
 }
