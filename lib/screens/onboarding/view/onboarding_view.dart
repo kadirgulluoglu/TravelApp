@@ -1,9 +1,14 @@
+import 'package:denemefirebaseauth/screens/home/view/home_view.dart';
+import 'package:denemefirebaseauth/screens/home/viewmodel/home_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/compenents/large_text.dart';
 import '../../../core/compenents/text.dart';
 import '../../../init/theme/colors.dart';
 import '../../../product/compenents/responsive_button.dart';
+import '../../auth/view/login_view.dart';
+import '../../auth/viewmodel/auth_viewmodel.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({Key? key}) : super(key: key);
@@ -20,10 +25,21 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     "Tarihi yapıları görmek için sabırsızlanıyorsan doğru yerdesin hemen bize katıl",
     "Senin için en iyi rehber bu mobil uygulamada saklı"
   ];
+
+  late PageController _controller;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _controller = PageController();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView.builder(
+          controller: _controller,
           scrollDirection: Axis.vertical,
           itemCount: images.length,
           itemBuilder: (_, index) {
@@ -61,7 +77,26 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                           ),
                         ),
                         const SizedBox(height: 40),
-                        ResponsiveButton(width: 120),
+                        ResponsiveButton(
+                            onPressed: () {
+                              if (index == images.length - 1) {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        ChangeNotifierProvider(
+                                      create: (context) => HomeViewModel(),
+                                      child: const HomeView(),
+                                    ),
+                                  ),
+                                );
+                              } else {
+                                _controller.nextPage(
+                                    duration: Duration(milliseconds: 600),
+                                    curve: Curves.easeIn);
+                              }
+                            },
+                            width: 120),
                       ],
                     ),
                     Column(
