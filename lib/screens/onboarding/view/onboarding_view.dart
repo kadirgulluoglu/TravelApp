@@ -7,8 +7,6 @@ import '../../../core/compenents/large_text.dart';
 import '../../../core/compenents/text.dart';
 import '../../../init/theme/colors.dart';
 import '../../../product/compenents/responsive_button.dart';
-import '../../auth/view/login_view.dart';
-import '../../auth/viewmodel/auth_viewmodel.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({Key? key}) : super(key: key);
@@ -92,8 +90,8 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                                 );
                               } else {
                                 _controller.nextPage(
-                                    duration: Duration(milliseconds: 600),
-                                    curve: Curves.easeIn);
+                                    duration: const Duration(milliseconds: 600),
+                                    curve: Curves.linearToEaseOut);
                               }
                             },
                             width: 120),
