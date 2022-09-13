@@ -168,9 +168,11 @@ class _DetailPageViewState extends State<DetailPageView> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        CustomLargeText(
-          text: viewModel.placeList?[widget.index].name ?? "",
-          color: Colors.black.withOpacity(0.8),
+        Expanded(
+          child: CustomLargeText(
+            text: viewModel.placeList?[widget.index].name ?? "",
+            color: Colors.black.withOpacity(0.8),
+          ),
         ),
         FittedBox(
           child: CustomLargeText(
