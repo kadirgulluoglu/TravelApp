@@ -24,14 +24,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Firebase Auth',
-      home: rememberme
-          ? const OnBoardingView()
-          : ChangeNotifierProvider(
-              create: (context) => AuthViewModel(),
-              child: const LoginView(),
-            ),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'TravelApp',
+        home: rememberme ? const OnBoardingView() : const OnBoardingView());
   }
 }
