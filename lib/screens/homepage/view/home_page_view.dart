@@ -1,12 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:denemefirebaseauth/product/enum/view_state.dart';
 import 'package:denemefirebaseauth/screens/homepage/view/details_page_view.dart';
-import 'package:denemefirebaseauth/screens/homepage/viewmodel/home_page_viewmodel.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/compenents/large_text.dart';
 import '../../../core/compenents/text.dart';
 import '../../../init/theme/colors.dart';
+import '../../../models/user_model.dart';
 import '../../../product/compenents/circle_tab_indicator.dart';
 import '../../home/viewmodel/home_viewmodel.dart';
 
@@ -20,10 +22,13 @@ class HomePageView extends StatefulWidget {
 class _HomePageViewState extends State<HomePageView>
     with TickerProviderStateMixin {
   late TabController _tabController;
+  User? user = FirebaseAuth.instance.currentUser;
+  UserModel? userModel = UserModel();
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+    getFirebase();
   }
 
   @override
@@ -47,6 +52,17 @@ class _HomePageViewState extends State<HomePageView>
             ),
           )
         : _buildLoadingCircular();
+  }
+
+  Future getFirebase() async {
+    await FirebaseFirestore.instance
+        .collection("person")
+        .doc(user!.uid)
+        .get()
+        .then((value) => {
+              this.userModel = UserModel.fromMap(value.data()),
+              setState(() {}),
+            });
   }
 
   Map<String, String> image = {
@@ -154,12 +170,12 @@ class _HomePageViewState extends State<HomePageView>
   Container _buildTextDiscover() {
     return Container(
         margin: const EdgeInsets.only(left: 20),
-        child: CustomLargeText(text: "Dünyayı Keşfet"));
+        child: CustomLargeText(text: "Merhaba\n${userModel?.name ?? ""}"));
   }
 
   Container _buildProfilePictureAndMenuIcon() {
     return Container(
-      padding: const EdgeInsets.only(top: 70, left: 20),
+      padding: const EdgeInsets.only(top: 60, left: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
