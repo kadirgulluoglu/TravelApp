@@ -11,7 +11,6 @@ class HomePageViewModel with ChangeNotifier {
   }
 
   final _service = locator<HomePageService>();
-  int _customStar = 3;
   bool _isFavoriteButton = false;
   bool get isFavoriteButton => _isFavoriteButton;
   ViewState _state = ViewState.busy;
@@ -28,13 +27,6 @@ class HomePageViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  int get customStar => _customStar;
-
-  set customStar(int value) {
-    _customStar = value;
-    notifyListeners();
-  }
-
   int _selectedIndexPeople = 0;
 
   int get selectedIndexPeople => _selectedIndexPeople;
@@ -44,7 +36,6 @@ class HomePageViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  @override
   Future getPlaces() async {
     try {
       state = ViewState.busy;
