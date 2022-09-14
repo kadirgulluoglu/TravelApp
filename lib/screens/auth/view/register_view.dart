@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import '../../../init/theme/colors.dart';
 import '../../../models/user_model.dart';
 import '../../../product/components/custom_elevated_button.dart';
+import '../../../product/components/custom_snackbar.dart';
 import 'login_view.dart';
 
 class RegisterView extends StatefulWidget {
@@ -67,7 +68,7 @@ class _RegisterViewState extends State<RegisterView> {
                     children: [
                       SizedBox(
                         width: size.width * 0.6,
-                        child: FittedBox(
+                        child: const FittedBox(
                           child: Text(
                             'KAYIT OL',
                             style: TextStyle(
@@ -94,7 +95,7 @@ class _RegisterViewState extends State<RegisterView> {
                       viewModel.isLoading
                           ? Container(
                               padding: const EdgeInsets.symmetric(vertical: 25),
-                              child: CircularProgressIndicator(
+                              child: const CircularProgressIndicator(
                                 color: CustomColor.mainColor,
                               ),
                             )
@@ -115,7 +116,7 @@ class _RegisterViewState extends State<RegisterView> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Ad Soyad',
           style: TextStyle(
             color: CustomColor.mainColor,
@@ -169,7 +170,7 @@ class _RegisterViewState extends State<RegisterView> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'E-Posta',
           style: TextStyle(
             color: CustomColor.mainColor,
@@ -226,7 +227,7 @@ class _RegisterViewState extends State<RegisterView> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Şifre',
           style: TextStyle(
             color: CustomColor.mainColor,
@@ -283,7 +284,7 @@ class _RegisterViewState extends State<RegisterView> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Şifre Tekrar',
           style: TextStyle(
             color: CustomColor.mainColor,
@@ -357,7 +358,7 @@ class _RegisterViewState extends State<RegisterView> {
         ));
       },
       child: RichText(
-        text: TextSpan(
+        text: const TextSpan(
           children: [
             TextSpan(
               text: "Hesabınız var mı ? ",
@@ -406,14 +407,20 @@ class _RegisterViewState extends State<RegisterView> {
     userModel.uid = user?.uid;
     userModel.name = nameController.text;
     userModel.email = user?.email;
-
     await firebaseFirestore
         .collection("person")
         .doc(user?.uid)
         .set(userModel.toMap());
-    Fluttertoast.showToast(msg: "Kayıt Başarılı");
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const LoginView()));
+    ScaffoldMessenger.of(context).showSnackBar(CustomSnackBar(
+      contentText: "Kayıt Başarılı",
+      color: CustomColor.mainColor,
+    ));
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+      builder: (context) => ChangeNotifierProvider<AuthViewModel>.value(
+        value: viewModel,
+        child: const LoginView(),
+      ),
+    ));
     viewModel.changeLoading();
   }
 }
