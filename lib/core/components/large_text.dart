@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CustomLargeText extends StatelessWidget {
-  CustomLargeText(
+  const CustomLargeText(
       {Key? key, this.size = 30, required this.text, this.color = Colors.black})
       : super(key: key);
-  double size;
+  final double size;
   final String text;
   final Color color;
 
