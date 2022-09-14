@@ -1,7 +1,8 @@
-import 'package:denemefirebaseauth/screens/home/view/home_view.dart';
-import 'package:denemefirebaseauth/screens/home/viewmodel/home_viewmodel.dart';
+import 'package:denemefirebaseauth/screens/auth/view/login_view.dart';
+import 'package:denemefirebaseauth/screens/auth/viewmodel/auth_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/components/large_text.dart';
 import '../../../core/components/text.dart';
@@ -58,7 +59,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomLargeText(
+                        const CustomLargeText(
                           text: "Seyahat",
                         ),
                         CustomText(
@@ -76,18 +77,21 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                         ),
                         const SizedBox(height: 40),
                         ResponsiveButton(
-                            onPressed: () {
+                            onPressed: () async {
                               if (index == images.length - 1) {
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
                                         ChangeNotifierProvider(
-                                      create: (context) => HomeViewModel(),
-                                      child: const HomeView(),
+                                      create: (context) => AuthViewModel(),
+                                      child: const LoginView(),
                                     ),
                                   ),
                                 );
+                                final prefs =
+                                    await SharedPreferences.getInstance();
+                                await prefs.setBool('ON_BOARDING', false);
                               } else {
                                 _controller.nextPage(
                                     duration: const Duration(milliseconds: 600),

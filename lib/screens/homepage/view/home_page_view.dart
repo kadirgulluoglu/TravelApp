@@ -62,7 +62,7 @@ class _HomePageViewState extends State<HomePageView>
         .doc(user!.uid)
         .get()
         .then((value) => {
-              this.userModel = UserModel.fromMap(value.data()),
+              userModel = UserModel.fromMap(value.data()),
               setState(() {}),
             });
   }
@@ -75,7 +75,7 @@ class _HomePageViewState extends State<HomePageView>
   };
 
   Center _buildLoadingCircular() {
-    return Center(
+    return const Center(
       child: CircularProgressIndicator(
         color: CustomColor.mainColor,
       ),
@@ -125,7 +125,7 @@ class _HomePageViewState extends State<HomePageView>
       padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
+        children: const [
           CustomLargeText(text: "Daha fazlasını Keşfet", size: 22),
           CustomText(text: "Tümü", color: CustomColor.textColor1)
         ],
@@ -159,7 +159,8 @@ class _HomePageViewState extends State<HomePageView>
         unselectedLabelColor: Colors.grey,
         indicatorSize: TabBarIndicatorSize.label,
         isScrollable: true,
-        indicator: CircleTabIndicator(radius: 4, color: CustomColor.mainColor),
+        indicator:
+            const CircleTabIndicator(radius: 4, color: CustomColor.mainColor),
         tabs: const [
           Tab(text: "Yerler"),
           Tab(text: "Seyahat"),

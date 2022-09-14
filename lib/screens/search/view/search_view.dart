@@ -36,7 +36,7 @@ class _SearchViewState extends State<SearchView> {
           Expanded(
             child: _searchController.text.isNotEmpty &&
                     viewModel.searchList.isEmpty
-                ? Center(child: CustomLargeText(text: "Sonuç yok"))
+                ? const Center(child: CustomLargeText(text: "Sonuç yok"))
                 : ListView.builder(
                     scrollDirection: Axis.vertical,
                     itemCount: viewModel.searchList.length,
@@ -188,12 +188,12 @@ class _SearchViewState extends State<SearchView> {
             viewModel.searchListItem(value);
           },
           controller: _searchController,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             prefixIcon: Icon(Icons.search, color: CustomColor.mainColor),
             border: InputBorder.none,
             enabledBorder: InputBorder.none,
             disabledBorder: InputBorder.none,
-            contentPadding: const EdgeInsets.only(left: 15, right: 15, top: 15),
+            contentPadding: EdgeInsets.only(left: 15, right: 15, top: 15),
             hintText: 'Mekan Ara',
           ),
         ),

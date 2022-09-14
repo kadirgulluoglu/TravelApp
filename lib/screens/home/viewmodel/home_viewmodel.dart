@@ -24,10 +24,10 @@ class HomeViewModel with ChangeNotifier {
   }
 
   final List<Widget> _pages = [
-    HomePageView(),
-    FavoriteView(),
-    SearchView(),
-    ProfileView()
+    const HomePageView(),
+    const FavoriteView(),
+    const SearchView(),
+    const ProfileView()
   ];
 
   List<Widget> get pages => _pages;

@@ -56,11 +56,11 @@ class _DetailPageViewState extends State<DetailPageView> {
                       text: "İnsan Sayısı",
                       color: Colors.black.withOpacity(0.8),
                       size: 20),
-                  CustomText(text: "Kaç kişi katılmak istiyorsunuz ?"),
+                  const CustomText(text: "Kaç kişi katılmak istiyorsunuz ?"),
                   const SizedBox(height: 15),
                   _buildPeopleNumberButton(viewModel),
                   const SizedBox(height: 15),
-                  CustomLargeText(text: "Açıklama"),
+                  const CustomLargeText(text: "Açıklama"),
                   _buildPlaceSubtitle(viewModel),
                   const SizedBox(height: 25),
                   _buildFavIconAndCustomButton(viewModel),
@@ -167,7 +167,7 @@ class _DetailPageViewState extends State<DetailPageView> {
   Row _buildPlaceCity(HomeViewModel viewModel) {
     return Row(
       children: [
-        Icon(Icons.location_on, color: CustomColor.mainColor),
+        const Icon(Icons.location_on, color: CustomColor.mainColor),
         const SizedBox(width: 5),
         CustomText(
             text: viewModel.placeList?[widget.index].city ?? "",
