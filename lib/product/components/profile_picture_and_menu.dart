@@ -1,3 +1,4 @@
+import 'package:denemefirebaseauth/core/extension/context_extensions.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePictureAndMenuIcon extends StatelessWidget {
@@ -6,14 +7,14 @@ class ProfilePictureAndMenuIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 60, left: 20),
+      padding: context.paddingProfile,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Icon(Icons.menu, size: 30, color: Colors.black54),
           Expanded(child: Container()),
           Container(
-            margin: const EdgeInsets.only(right: 20),
+            margin: context.paddingRight,
             width: 50,
             height: 50,
             child: ClipRRect(

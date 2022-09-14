@@ -1,3 +1,4 @@
+import 'package:denemefirebaseauth/core/extension/context_extensions.dart';
 import 'package:flutter/material.dart';
 
 import '../../init/theme/colors.dart';
@@ -16,7 +17,7 @@ class CustomElevatedButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         elevation: 5,
         primary: CustomColor.mainColor,
-        padding: const EdgeInsets.all(15),
+        padding: context.paddingNormal,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),

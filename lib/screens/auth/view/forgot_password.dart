@@ -1,3 +1,4 @@
+import 'package:denemefirebaseauth/core/extension/context_extensions.dart';
 import 'package:denemefirebaseauth/init/theme/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -24,12 +25,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: context.paddingLow,
                   child: IconButton(
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.close,
                       color: CustomColor.mainColor,
                       size: 30,
@@ -42,16 +43,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               children: [
                 SingleChildScrollView(
                   physics: const AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: size.width * 0.05,
-                    vertical: size.height * 0.07,
-                  ),
+                  padding: context.paddingNormalHorizontalAndVertical,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
                         width: size.width * 0.6,
-                        child: FittedBox(
+                        child: const FittedBox(
                           child: Text(
                             'Şifre Sıfırlama',
                             style: TextStyle(
@@ -77,13 +75,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
   Widget buildResetPasswordButton() {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 25),
+      padding: context.paddingNormalVertical,
       width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           elevation: 5,
           primary: CustomColor.mainColor,
-          padding: const EdgeInsets.all(15),
+          padding: context.paddingNormal,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
@@ -101,7 +99,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'E-Posta',
           style: TextStyle(
             color: CustomColor.mainColor,
@@ -147,7 +145,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: const EdgeInsets.only(top: 15),
+              contentPadding: context.paddingNormalTop,
               prefixIcon: const Icon(
                 Icons.email,
                 color: Colors.white,
