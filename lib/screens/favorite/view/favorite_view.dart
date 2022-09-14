@@ -2,8 +2,9 @@ import 'package:denemefirebaseauth/screens/home/viewmodel/home_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/compenents/large_text.dart';
+import '../../../core/components/large_text.dart';
 import '../../../init/theme/colors.dart';
+import '../../../product/components/profile_picture_and_menu.dart';
 import '../../homepage/view/details_page_view.dart';
 
 class FavoriteView extends StatefulWidget {
@@ -22,7 +23,7 @@ class _FavoriteViewState extends State<FavoriteView> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildProfilePictureAndMenuIcon(),
+          const ProfilePictureAndMenuIcon(),
           _buildTextFavorite(),
           viewModel.favoriteList.isNotEmpty
               ? _buildListPlace(viewModel)
@@ -89,32 +90,6 @@ class _FavoriteViewState extends State<FavoriteView> {
                 ),
               ));
         },
-      ),
-    );
-  }
-
-  Container _buildProfilePictureAndMenuIcon() {
-    return Container(
-      padding: const EdgeInsets.only(top: 60, left: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Icon(Icons.menu, size: 30, color: Colors.black54),
-          Expanded(child: Container()),
-          Container(
-            margin: const EdgeInsets.only(right: 20),
-            width: 50,
-            height: 50,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10), // Image border
-              child: SizedBox.fromSize(
-                size: const Size.fromRadius(10), // Image radius
-                child: Image.network('https://picsum.photos/200',
-                    fit: BoxFit.cover),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

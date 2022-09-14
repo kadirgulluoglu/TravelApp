@@ -1,4 +1,3 @@
-import 'package:denemefirebaseauth/product/compenents/custom_elevated_button.dart';
 import 'package:denemefirebaseauth/screens/auth/view/register_view.dart';
 import 'package:denemefirebaseauth/screens/auth/viewmodel/auth_viewmodel.dart';
 import 'package:denemefirebaseauth/screens/home/view/home_view.dart';
@@ -10,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../init/theme/colors.dart';
+import '../../../product/components/custom_elevated_button.dart';
 import 'forgot_password.dart';
 
 class LoginView extends StatefulWidget {

@@ -1,15 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:denemefirebaseauth/core/components/large_text.dart';
 import 'package:denemefirebaseauth/product/enum/view_state.dart';
 import 'package:denemefirebaseauth/screens/homepage/view/details_page_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/compenents/large_text.dart';
-import '../../../core/compenents/text.dart';
+import '../../../core/components/large_text.dart';
+import '../../../core/components/text.dart';
 import '../../../init/theme/colors.dart';
 import '../../../models/user_model.dart';
-import '../../../product/compenents/circle_tab_indicator.dart';
+import '../../../product/components/circle_tab_indicator.dart';
+import '../../../product/components/profile_picture_and_menu.dart';
 import '../../home/viewmodel/home_viewmodel.dart';
 
 class HomePageView extends StatefulWidget {
@@ -39,7 +41,7 @@ class _HomePageViewState extends State<HomePageView>
             body: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildProfilePictureAndMenuIcon(),
+                const ProfilePictureAndMenuIcon(),
                 _buildTextDiscover(),
                 const SizedBox(height: 10),
                 _buildTabBar(),
@@ -171,32 +173,6 @@ class _HomePageViewState extends State<HomePageView>
     return Container(
         margin: const EdgeInsets.only(left: 20),
         child: CustomLargeText(text: "Merhaba\n${userModel?.name ?? ""}"));
-  }
-
-  Container _buildProfilePictureAndMenuIcon() {
-    return Container(
-      padding: const EdgeInsets.only(top: 60, left: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Icon(Icons.menu, size: 30, color: Colors.black54),
-          Expanded(child: Container()),
-          Container(
-            margin: const EdgeInsets.only(right: 20),
-            width: 50,
-            height: 50,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10), // Image border
-              child: SizedBox.fromSize(
-                size: const Size.fromRadius(10), // Image radius
-                child: Image.network('https://picsum.photos/200',
-                    fit: BoxFit.cover),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 
   ListView buildListView(HomeViewModel viewModel, int type) {

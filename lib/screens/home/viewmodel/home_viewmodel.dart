@@ -1,12 +1,13 @@
 import 'package:denemefirebaseauth/screens/favorite/view/favorite_view.dart';
+import 'package:denemefirebaseauth/screens/profile/profile_view.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../../locator.dart';
 import '../../../product/enum/view_state.dart';
 import '../../homepage/model/homepage_model.dart';
 import '../../homepage/service/homepage_service.dart';
 import '../../homepage/view/home_page_view.dart';
+import '../../search/view/search_view.dart';
 
 class HomeViewModel with ChangeNotifier {
   int _currentIndex = 0;
@@ -25,8 +26,8 @@ class HomeViewModel with ChangeNotifier {
   final List<Widget> _pages = [
     HomePageView(),
     FavoriteView(),
-    Center(child: Text("Keşfet")),
-    Container(color: Colors.blueGrey),
+    SearchView(),
+    ProfileView()
   ];
 
   List<Widget> get pages => _pages;
@@ -41,6 +42,7 @@ class HomeViewModel with ChangeNotifier {
   ViewState _state = ViewState.busy;
   List<HomePageModel>? placeList;
   List<HomePageModel> favoriteList = [];
+  List<HomePageModel> searchList = [];
 
   ViewState get state => _state;
 
@@ -60,6 +62,14 @@ class HomeViewModel with ChangeNotifier {
 
   set selectedIndexPeople(int value) {
     _selectedIndexPeople = value;
+    notifyListeners();
+  }
+
+  void searchListItem(String value) {
+    searchList = placeList!
+        .where((element) =>
+            element.name!.toLowerCase().contains(value.toLowerCase()))
+        .toList();
     notifyListeners();
   }
 

@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:denemefirebaseauth/product/compenents/custom_elevated_button.dart';
 import 'package:denemefirebaseauth/screens/auth/viewmodel/auth_viewmodel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../../init/theme/colors.dart';
 import '../../../models/user_model.dart';
+import '../../../product/components/custom_elevated_button.dart';
 import 'login_view.dart';
 
 class RegisterView extends StatefulWidget {

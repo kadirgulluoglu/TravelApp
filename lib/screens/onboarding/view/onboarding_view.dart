@@ -3,10 +3,10 @@ import 'package:denemefirebaseauth/screens/home/viewmodel/home_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/compenents/large_text.dart';
-import '../../../core/compenents/text.dart';
+import '../../../core/components/large_text.dart';
+import '../../../core/components/text.dart';
 import '../../../init/theme/colors.dart';
-import '../../../product/compenents/responsive_button.dart';
+import '../../../product/components/responsive_button.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({Key? key}) : super(key: key);
