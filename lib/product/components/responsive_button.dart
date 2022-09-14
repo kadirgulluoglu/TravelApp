@@ -7,7 +7,8 @@ class ResponsiveButton extends StatelessWidget {
   final double? width;
   final VoidCallback? onPressed;
 
-  ResponsiveButton({Key? key, this.isResponsive, this.width, this.onPressed})
+  const ResponsiveButton(
+      {Key? key, this.isResponsive, this.width, this.onPressed})
       : super(key: key);
 
   @override
