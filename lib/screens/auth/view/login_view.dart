@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../init/theme/colors.dart';
 import '../../../product/components/custom_elevated_button.dart';
+import '../../../product/components/custom_snackbar.dart';
 import 'forgot_password.dart';
 
 class LoginView extends StatefulWidget {
@@ -65,7 +66,7 @@ class _LoginViewState extends State<LoginView> {
                   children: [
                     SizedBox(
                       width: size.width * 0.6,
-                      child: FittedBox(
+                      child: const FittedBox(
                         child: Text(
                           'Giriş Yap',
                           style: TextStyle(
@@ -84,7 +85,7 @@ class _LoginViewState extends State<LoginView> {
                     viewModel.isLoading
                         ? Container(
                             padding: const EdgeInsets.symmetric(vertical: 25),
-                            child: CircularProgressIndicator(
+                            child: const CircularProgressIndicator(
                               color: CustomColor.mainColor,
                             ),
                           )
@@ -104,7 +105,7 @@ class _LoginViewState extends State<LoginView> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'E-Posta',
           style: TextStyle(
             color: CustomColor.mainColor,
@@ -168,7 +169,7 @@ class _LoginViewState extends State<LoginView> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Şifre',
           style: TextStyle(
             color: CustomColor.mainColor,
@@ -247,7 +248,7 @@ class _LoginViewState extends State<LoginView> {
             MaterialPageRoute(builder: (context) => const ForgotPassword()),
           );
         },
-        child: Text(
+        child: const Text(
           'Şifremi Unuttum',
           style: TextStyle(
             color: CustomColor.mainColor,
@@ -276,7 +277,7 @@ class _LoginViewState extends State<LoginView> {
               },
             ),
           ),
-          Text(
+          const Text(
             'Beni Hatırla',
             style: TextStyle(
               color: CustomColor.mainColor,
@@ -312,7 +313,7 @@ class _LoginViewState extends State<LoginView> {
         ));
       },
       child: RichText(
-        text: TextSpan(
+        text: const TextSpan(
           children: [
             TextSpan(
               text: "Hesabınız yok mu ? ",
@@ -340,7 +341,10 @@ class _LoginViewState extends State<LoginView> {
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((uid) => {
-                Fluttertoast.showToast(msg: "Giriş Başarılı"),
+                ScaffoldMessenger.of(context).showSnackBar(CustomSnackBar(
+                  contentText: "Giriş Başarılı!!",
+                  color: CustomColor.mainColor,
+                )),
                 saveSharedPreferences(viewModel),
                 Navigator.pushReplacement(
                   context,
@@ -354,7 +358,10 @@ class _LoginViewState extends State<LoginView> {
               })
           .catchError((e) {
         viewModel.changeLoading();
-        Fluttertoast.showToast(msg: "Giriş Başarısız");
+        ScaffoldMessenger.of(context).showSnackBar(CustomSnackBar(
+          contentText: "Giriş Başarısız!!",
+          color: CustomColor.mainColor,
+        ));
       });
     }
   }
@@ -362,9 +369,9 @@ class _LoginViewState extends State<LoginView> {
   Future saveSharedPreferences(AuthViewModel viewModel) async {
     final prefs = await SharedPreferences.getInstance();
     if (viewModel.rememberMe) {
-      await prefs.setBool('BeniHatirla', true);
+      await prefs.setBool('RememberMe', true);
     } else {
-      await prefs.setBool('BeniHatirla', false);
+      await prefs.setBool('RememberMe', false);
     }
   }
 }
