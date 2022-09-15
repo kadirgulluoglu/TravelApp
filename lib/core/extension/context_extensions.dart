@@ -37,6 +37,12 @@ extension PaddingExtensionOnly on BuildContext {
   EdgeInsets get paddingMediumTop => EdgeInsets.only(top: mediumValue);
   EdgeInsets get paddingProfile => const EdgeInsets.only(top: 60, left: 20);
   EdgeInsets get paddingRight => const EdgeInsets.only(right: 20);
+  EdgeInsets get paddingCard => const EdgeInsets.only(right: 15, top: 15);
+  EdgeInsets get paddingFavorite =>
+      const EdgeInsets.only(right: 15, top: 10, left: 15);
+  EdgeInsets get paddingLeft => const EdgeInsets.only(left: 20);
+  EdgeInsets get paddingHomePage =>
+      const EdgeInsets.only(left: 20, right: 20, bottom: 20);
 }
 
 extension PaddingExtensionSymetric on BuildContext {
@@ -56,9 +62,10 @@ extension PaddingExtensionSymetric on BuildContext {
       EdgeInsets.symmetric(horizontal: mediumValue);
   EdgeInsets get paddingHighHorizontal =>
       EdgeInsets.symmetric(horizontal: highValue);
-
   EdgeInsets get paddingLowHorizontalAndVertical =>
       EdgeInsets.symmetric(horizontal: lowValue, vertical: lowValue);
+  EdgeInsets get paddingCustomHorizontalAndVertical =>
+      EdgeInsets.symmetric(horizontal: width * 0.07, vertical: height * 0.14);
   EdgeInsets get paddingMediumHorizontalAndVertical =>
       EdgeInsets.symmetric(horizontal: mediumValue, vertical: mediumValue);
   EdgeInsets get paddingNormalHorizontalAndVertical =>
