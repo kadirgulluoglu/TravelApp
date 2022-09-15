@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:denemefirebaseauth/core/components/large_text.dart';
+import 'package:denemefirebaseauth/core/extension/context_extensions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -33,20 +34,20 @@ class _ProfileViewState extends State<ProfileView> {
         body: SafeArea(
       child: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.all(16),
+          padding: context.paddingNormal,
           height: size.height,
           width: size.width,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: context.paddingNormal,
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: const [Icon(Icons.notifications)]),
               ),
               Container(
-                margin: const EdgeInsets.only(right: 20),
+                margin: context.paddingRight,
                 width: 200,
                 height: 200,
                 child: ClipRRect(

@@ -1,4 +1,5 @@
 import 'package:denemefirebaseauth/core/components/large_text.dart';
+import 'package:denemefirebaseauth/core/extension/context_extensions.dart';
 import 'package:denemefirebaseauth/init/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -91,7 +92,7 @@ class _SearchViewState extends State<SearchView> {
 
   Padding _buildOnImageWidget(HomeViewModel viewModel, int index, int id) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: context.paddingNormal,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -182,7 +183,7 @@ class _SearchViewState extends State<SearchView> {
   }
 
   Widget buildSearch(HomeViewModel viewModel) => Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: context.paddingLow,
         child: TextField(
           onChanged: (value) {
             viewModel.searchListItem(value);

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:denemefirebaseauth/core/components/large_text.dart';
+import 'package:denemefirebaseauth/core/extension/context_extensions.dart';
 import 'package:denemefirebaseauth/product/enum/view_state.dart';
 import 'package:denemefirebaseauth/screens/homepage/view/details_page_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -85,13 +86,13 @@ class _HomePageViewState extends State<HomePageView>
   Container _buildDiscoverAllItem() {
     return Container(
       height: 100,
-      margin: const EdgeInsets.only(left: 20),
+      margin: context.paddingLeft,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: image.length,
           itemBuilder: (context, index) {
             return Container(
-              margin: const EdgeInsets.only(right: 40),
+              margin: context.paddingRight,
               child: Column(
                 children: [
                   Container(
@@ -122,7 +123,7 @@ class _HomePageViewState extends State<HomePageView>
 
   Padding _buildDiscoverAllText() {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+      padding: context.paddingHomePage,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
@@ -135,7 +136,7 @@ class _HomePageViewState extends State<HomePageView>
 
   Container _buildTabBarView(HomeViewModel viewModel) {
     return Container(
-      padding: const EdgeInsets.only(left: 20),
+      padding: context.paddingLeft,
       height: 270,
       width: double.maxFinite,
       child: TabBarView(
@@ -153,7 +154,7 @@ class _HomePageViewState extends State<HomePageView>
     return Align(
       alignment: Alignment.centerLeft,
       child: TabBar(
-        labelPadding: const EdgeInsets.only(left: 20, right: 20),
+        labelPadding: context.paddingNormalHorizontal,
         labelColor: Colors.black,
         controller: _tabController,
         unselectedLabelColor: Colors.grey,
@@ -172,7 +173,7 @@ class _HomePageViewState extends State<HomePageView>
 
   Container _buildTextDiscover() {
     return Container(
-        margin: const EdgeInsets.only(left: 20),
+        margin: context.paddingLeft,
         child: CustomLargeText(text: "Merhaba\n${userModel?.name ?? ""}"));
   }
 
@@ -195,7 +196,7 @@ class _HomePageViewState extends State<HomePageView>
                   ));
                 },
                 child: Container(
-                  padding: const EdgeInsets.only(right: 15, top: 10),
+                  padding: context.paddingCard,
                   width: 205,
                   height: 300,
                   decoration: BoxDecoration(
@@ -217,7 +218,7 @@ class _HomePageViewState extends State<HomePageView>
                             color: Colors.black.withOpacity(0.5),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: context.paddingNormal,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,3 +1,4 @@
+import 'package:denemefirebaseauth/core/extension/context_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -36,7 +37,7 @@ class _DetailPageViewState extends State<DetailPageView> {
     return Positioned.fill(
       top: 300,
       child: Container(
-        padding: const EdgeInsets.only(left: 20, right: 20, top: 5),
+        padding: context.paddingNormalHorizontal,
         width: MediaQuery.of(context).size.width,
         height: 500,
         decoration: _boxDecoration(),

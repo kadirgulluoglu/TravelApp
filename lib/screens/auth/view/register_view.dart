@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:denemefirebaseauth/core/extension/context_extensions.dart';
 import 'package:denemefirebaseauth/screens/auth/viewmodel/auth_viewmodel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -57,10 +58,7 @@ class _RegisterViewState extends State<RegisterView> {
               ),
               child: SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
-                padding: EdgeInsets.symmetric(
-                  horizontal: size.width * 0.07,
-                  vertical: size.height * 0.14,
-                ),
+                padding: context.paddingCustomHorizontalAndVertical,
                 child: Form(
                   key: _formKey,
                   child: Column(
@@ -94,7 +92,7 @@ class _RegisterViewState extends State<RegisterView> {
                       const SizedBox(height: 20),
                       viewModel.isLoading
                           ? Container(
-                              padding: const EdgeInsets.symmetric(vertical: 25),
+                              padding: context.paddingNormalVertical,
                               child: const CircularProgressIndicator(
                                 color: CustomColor.mainColor,
                               ),
@@ -154,7 +152,7 @@ class _RegisterViewState extends State<RegisterView> {
             style: const TextStyle(color: Colors.white),
             decoration: InputDecoration(
                 border: InputBorder.none,
-                contentPadding: const EdgeInsets.only(top: 15),
+                contentPadding: context.paddingNormalTop,
                 prefixIcon:
                     const Icon(Icons.account_circle, color: Colors.white),
                 hintText: "Ad Soyad",
@@ -211,7 +209,7 @@ class _RegisterViewState extends State<RegisterView> {
             style: const TextStyle(color: Colors.white),
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: const EdgeInsets.only(top: 15),
+              contentPadding: context.paddingNormalTop,
               prefixIcon: const Icon(Icons.email, color: Colors.white),
               hintText: "Eposta",
               hintStyle:
@@ -269,7 +267,7 @@ class _RegisterViewState extends State<RegisterView> {
             style: const TextStyle(color: Colors.white),
             decoration: InputDecoration(
                 border: InputBorder.none,
-                contentPadding: const EdgeInsets.only(top: 15),
+                contentPadding: context.paddingNormalTop,
                 prefixIcon: const Icon(Icons.lock, color: Colors.white),
                 hintText: "Şifre",
                 hintStyle:
@@ -322,7 +320,7 @@ class _RegisterViewState extends State<RegisterView> {
             style: const TextStyle(color: Colors.white),
             decoration: InputDecoration(
                 border: InputBorder.none,
-                contentPadding: const EdgeInsets.only(top: 15),
+                contentPadding: context.paddingNormalTop,
                 prefixIcon: const Icon(Icons.lock, color: Colors.white),
                 hintText: "Şifre Tekrar",
                 hintStyle: TextStyle(
@@ -336,7 +334,7 @@ class _RegisterViewState extends State<RegisterView> {
 
   Widget buildKayitolbuton(AuthViewModel viewModel) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 25),
+      padding: context.paddingNormalVertical,
       width: double.infinity,
       child: CustomElevatedButton(
         onPressed: () {

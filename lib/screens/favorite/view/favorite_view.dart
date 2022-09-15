@@ -1,3 +1,4 @@
+import 'package:denemefirebaseauth/core/extension/context_extensions.dart';
 import 'package:denemefirebaseauth/screens/home/viewmodel/home_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -45,7 +46,7 @@ class _FavoriteViewState extends State<FavoriteView> {
 
   Container _buildTextFavorite() {
     return Container(
-        margin: const EdgeInsets.only(left: 20),
+        margin: context.paddingLeft,
         child: const CustomLargeText(text: "Favorilerim"));
   }
 
@@ -70,7 +71,7 @@ class _FavoriteViewState extends State<FavoriteView> {
                   ));
                 },
                 child: Container(
-                  padding: const EdgeInsets.only(right: 15, top: 10, left: 15),
+                  padding: context.paddingFavorite,
                   width: 150,
                   height: 200,
                   decoration: BoxDecoration(
@@ -98,7 +99,7 @@ class _FavoriteViewState extends State<FavoriteView> {
 
   Padding _buildOnImageWidget(HomeViewModel viewModel, int index, int id) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: context.paddingNormal,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
