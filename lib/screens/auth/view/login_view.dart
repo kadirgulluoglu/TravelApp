@@ -5,7 +5,6 @@ import 'package:denemefirebaseauth/screens/home/view/home_view.dart';
 import 'package:denemefirebaseauth/screens/home/viewmodel/home_viewmodel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -80,19 +79,24 @@ class _LoginViewState extends State<LoginView> {
                     _buildForgotPassword(),
                     buildRememberMe(viewModel),
                     SizedBox(height: size.height * 0.02),
-                    viewModel.isLoading
-                        ? Container(
-                            padding: context.paddingNormalVertical,
-                            child: const CircularProgressIndicator(
-                              color: CustomColor.mainColor,
-                            ),
-                          )
-                        : buildLoginButton(viewModel),
+                    buildLoginButton(viewModel),
                     buildSignupButton(viewModel),
                   ],
                 ),
               ),
-            )
+            ),
+            viewModel.isLoading
+                ? Container(
+                    color: Colors.black.withOpacity(0.3),
+                    width: context.width,
+                    height: context.height,
+                    child: const Center(
+                      child: CircularProgressIndicator(
+                        color: CustomColor.mainColor,
+                      ),
+                    ),
+                  )
+                : const SizedBox.shrink()
           ],
         ),
       ),
@@ -302,12 +306,15 @@ class _LoginViewState extends State<LoginView> {
   Widget buildSignupButton(AuthViewModel viewModel) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => ChangeNotifierProvider<AuthViewModel>.value(
-            value: viewModel,
-            child: const RegisterView(),
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ChangeNotifierProvider(
+              create: (context) => AuthViewModel(),
+              child: const RegisterView(),
+            ),
           ),
-        ));
+        );
       },
       child: RichText(
         text: const TextSpan(

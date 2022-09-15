@@ -5,11 +5,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../init/theme/colors.dart';
 import '../../../models/user_model.dart';
 import '../../../product/components/custom_elevated_button.dart';
 import '../../../product/components/custom_snackbar.dart';
+import '../../home/view/home_view.dart';
+import '../../home/viewmodel/home_viewmodel.dart';
 import 'login_view.dart';
 
 class RegisterView extends StatefulWidget {
@@ -90,20 +93,25 @@ class _RegisterViewState extends State<RegisterView> {
                         height: size.height * 0.02,
                       ),
                       const SizedBox(height: 20),
-                      viewModel.isLoading
-                          ? Container(
-                              padding: context.paddingNormalVertical,
-                              child: const CircularProgressIndicator(
-                                color: CustomColor.mainColor,
-                              ),
-                            )
-                          : buildKayitolbuton(viewModel),
-                      buildSignInbuton(viewModel),
+                      buildRegisterButton(viewModel),
+                      buildLoginButton(viewModel),
                     ],
                   ),
                 ),
               ),
-            )
+            ),
+            viewModel.isLoading
+                ? Container(
+                    color: Colors.black.withOpacity(0.3),
+                    width: context.width,
+                    height: context.height,
+                    child: const Center(
+                      child: CircularProgressIndicator(
+                        color: CustomColor.mainColor,
+                      ),
+                    ),
+                  )
+                : const SizedBox.shrink()
           ],
         ),
       ),
@@ -332,7 +340,7 @@ class _RegisterViewState extends State<RegisterView> {
     );
   }
 
-  Widget buildKayitolbuton(AuthViewModel viewModel) {
+  Widget buildRegisterButton(AuthViewModel viewModel) {
     return Container(
       padding: context.paddingNormalVertical,
       width: double.infinity,
@@ -345,7 +353,7 @@ class _RegisterViewState extends State<RegisterView> {
     );
   }
 
-  Widget buildSignInbuton(AuthViewModel viewModel) {
+  Widget buildLoginButton(AuthViewModel viewModel) {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -384,22 +392,32 @@ class _RegisterViewState extends State<RegisterView> {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then(
-            (value) => {
+            (value) async => {
               postDetailsToFirestore(viewModel),
+              await _auth
+                  .signInWithEmailAndPassword(email: email, password: password)
+                  .then((uid) => {
+                        savedShared(),
+                      })
+                  .catchError((e) {
+                ScaffoldMessenger.of(context).showSnackBar(CustomSnackBar(
+                  contentText: "Giriş Başarısız!!",
+                  color: CustomColor.mainColor,
+                ));
+              }),
             },
           )
           .catchError((e) {
         Fluttertoast.showToast(
             msg:
                 "Daha Önceden Bu E-Posta İle Kayıt Yapılmıştır. Lütfen Farklı Bir E-Posta Adresi Giriniz.");
+        viewModel.changeLoading();
       });
-      viewModel.changeLoading();
     }
   }
 
   postDetailsToFirestore(AuthViewModel viewModel) async {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-    viewModel.changeLoading();
     User? user = _auth.currentUser;
     UserModel userModel = UserModel();
     userModel.uid = user?.uid;
@@ -413,12 +431,19 @@ class _RegisterViewState extends State<RegisterView> {
       contentText: "Kayıt Başarılı",
       color: CustomColor.mainColor,
     ));
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) => ChangeNotifierProvider<AuthViewModel>.value(
-        value: viewModel,
-        child: const LoginView(),
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ChangeNotifierProvider(
+          create: (context) => HomeViewModel(),
+          child: const HomeView(),
+        ),
       ),
-    ));
-    viewModel.changeLoading();
+    );
   }
+}
+
+Future<void> savedShared() async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setBool('RememberMe', true);
 }
