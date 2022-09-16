@@ -1,5 +1,5 @@
 import 'package:denemefirebaseauth/screens/favorite/view/favorite_view.dart';
-import 'package:denemefirebaseauth/screens/profile/profile_view.dart';
+import 'package:denemefirebaseauth/screens/profile/view/profile_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../locator.dart';
