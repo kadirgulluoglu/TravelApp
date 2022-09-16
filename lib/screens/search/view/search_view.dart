@@ -37,7 +37,7 @@ class _SearchViewState extends State<SearchView> {
           Expanded(
             child: _searchController.text.isNotEmpty &&
                     viewModel.searchList.isEmpty
-                ? const Center(child: CustomLargeText(text: "Sonuç yok"))
+                ? Center(child: CustomLargeText(text: "Sonuç yok"))
                 : ListView.builder(
                     scrollDirection: Axis.vertical,
                     itemCount: viewModel.searchList.length,

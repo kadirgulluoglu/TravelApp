@@ -57,11 +57,11 @@ class _DetailPageViewState extends State<DetailPageView> {
                       text: "İnsan Sayısı",
                       color: Colors.black.withOpacity(0.8),
                       size: 20),
-                  const CustomText(text: "Kaç kişi katılmak istiyorsunuz ?"),
+                  CustomText(text: "Kaç kişi katılmak istiyorsunuz ?"),
                   const SizedBox(height: 15),
                   _buildPeopleNumberButton(viewModel),
                   const SizedBox(height: 15),
-                  const CustomLargeText(text: "Açıklama"),
+                  CustomLargeText(text: "Açıklama"),
                   _buildPlaceSubtitle(viewModel),
                   const SizedBox(height: 25),
                   _buildFavIconAndCustomButton(viewModel),
@@ -240,9 +240,13 @@ class _DetailPageViewState extends State<DetailPageView> {
       child: SizedBox(
         width: double.maxFinite,
         height: 350,
-        child: Image.network(
-          viewModel.placeList?[widget.index].image ?? "",
-          fit: BoxFit.cover,
+        child: Hero(
+          transitionOnUserGestures: true,
+          tag: viewModel.placeList?[widget.index].image ?? "",
+          child: Image.network(
+            viewModel.placeList?[widget.index].image ?? "",
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );

@@ -33,9 +33,7 @@ class _FavoriteViewState extends State<FavoriteView> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: const [
-                        CustomLargeText(text: "Favorilerim Boş")
-                      ],
+                      children: [CustomLargeText(text: "Favorilerim Boş")],
                     ),
                   ),
                 ),
@@ -47,7 +45,7 @@ class _FavoriteViewState extends State<FavoriteView> {
   Container _buildTextFavorite() {
     return Container(
         margin: context.paddingLeft,
-        child: const CustomLargeText(text: "Favorilerim"));
+        child: CustomLargeText(text: "Favorilerim"));
   }
 
   Expanded _buildListPlace(HomeViewModel viewModel) {

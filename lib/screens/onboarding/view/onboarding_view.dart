@@ -59,7 +59,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const CustomLargeText(
+                        CustomLargeText(
                           text: "Seyahat",
                         ),
                         CustomText(

@@ -126,7 +126,7 @@ class _HomePageViewState extends State<HomePageView>
       padding: context.paddingHomePage,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
+        children: [
           CustomLargeText(text: "Daha fazlasını Keşfet", size: 22),
           CustomText(text: "Tümü", color: CustomColor.textColor1)
         ],
@@ -209,9 +209,12 @@ class _HomePageViewState extends State<HomePageView>
                       child: Stack(
                         children: [
                           Positioned.fill(
-                            child: Image.network(
-                              viewModel.placeList?[index].image ?? "",
-                              fit: BoxFit.cover,
+                            child: Hero(
+                              tag: viewModel.placeList?[index].image ?? "",
+                              child: Image.network(
+                                viewModel.placeList?[index].image ?? "",
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                           Container(
