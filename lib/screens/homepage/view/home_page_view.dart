@@ -7,7 +7,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/components/large_text.dart';
 import '../../../core/components/text.dart';
 import '../../../init/theme/colors.dart';
 import '../../../models/user_model.dart';
