@@ -21,7 +21,8 @@ class ProfilePictureAndMenuIcon extends StatelessWidget {
               borderRadius: BorderRadius.circular(10), // Image border
               child: SizedBox.fromSize(
                 size: const Size.fromRadius(10), // Image radius
-                child: Image.network('https://picsum.photos/200',
+                child: Image.network(
+                    'https://doodleipsum.com/700/avatar-3?i=5ff278e220eacb10b8e37efefef406a6',
                     fit: BoxFit.cover),
               ),
             ),
