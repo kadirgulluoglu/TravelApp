@@ -345,10 +345,12 @@ class _LoginViewState extends State<LoginView> {
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((uid) => {
-                ScaffoldMessenger.of(context).showSnackBar(CustomSnackBar(
-                  contentText: "Giriş Başarılı!!",
-                  color: CustomColor.mainColor,
-                )),
+                ScaffoldMessenger.of(context).showSnackBar(
+                  CustomSnackBar(
+                    contentText: "Giriş Başarılı!!",
+                    color: CustomColor.mainColor,
+                  ),
+                ),
                 saveSharedPreferences(viewModel),
                 Navigator.pushReplacement(
                   context,
