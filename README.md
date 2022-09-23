@@ -1,6 +1,13 @@
 # Travel App
-## I using provider and MVVM architecture 
+## I using provider,dio and get_it package
 
 
-https://user-images.githubusercontent.com/62450370/190389361-c222a691-7d97-41b5-a2f7-0378e0694260.mp4
-
+<table>
+  <tr>
+    <td>In app</td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/TravelApp.gif" width=60% height=60%></td>
+  </tr>
+  
+</table>
