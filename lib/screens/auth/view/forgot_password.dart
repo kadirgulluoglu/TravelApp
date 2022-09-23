@@ -12,7 +12,7 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPassword> {
-  final TextEditingController _emailcontroller = TextEditingController();
+  final TextEditingController _mailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         ),
                       ),
                       SizedBox(height: size.height * 0.10),
-                      buildEposta(),
+                      buildMail(),
                       SizedBox(height: size.height * 0.10),
                       buildResetPasswordButton(),
                     ],
@@ -80,7 +80,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           elevation: 5,
-          primary: CustomColor.mainColor,
+          backgroundColor: CustomColor.mainColor,
           padding: context.paddingNormal,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
@@ -95,7 +95,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     );
   }
 
-  Widget buildEposta() {
+  Widget buildMail() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -133,11 +133,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               return null;
             },
             onSaved: (value) {
-              _emailcontroller.text = value!;
+              _mailController.text = value!;
             },
             autofocus: false,
             textInputAction: TextInputAction.next,
-            controller: _emailcontroller,
+            controller: _mailController,
             keyboardType: TextInputType.emailAddress,
             cursorColor: Theme.of(context).disabledColor,
             style: const TextStyle(
@@ -169,7 +169,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             ));
     try {
       await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: _emailcontroller.text.trim());
+          .sendPasswordResetEmail(email: _mailController.text.trim());
 
       final snackBar = SnackBar(
         content: const Text(
