@@ -1,3 +1,4 @@
+import 'package:denemefirebaseauth/product/enum/image_enum.dart';
 import 'package:flutter/material.dart';
 
 import '../../init/theme/colors.dart';
@@ -25,7 +26,7 @@ class ResponsiveButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset("assets/images/button-one.png"),
+            Image.asset(AssetsEnum.button.toPng()),
           ],
         ),
       ),
