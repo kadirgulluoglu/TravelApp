@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:denemefirebaseauth/core/components/large_text.dart';
 import 'package:denemefirebaseauth/core/extension/context_extensions.dart';
+import 'package:denemefirebaseauth/product/components/custom_circular_progress_indicator.dart';
 import 'package:denemefirebaseauth/product/enum/view_state.dart';
 import 'package:denemefirebaseauth/screens/homepage/view/details_page_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,6 +12,7 @@ import '../../../core/components/text.dart';
 import '../../../init/theme/colors.dart';
 import '../../../models/user_model.dart';
 import '../../../product/components/circle_tab_indicator.dart';
+import '../../../product/components/not_connected_network.dart';
 import '../../../product/components/profile_picture_and_menu.dart';
 import '../../home/viewmodel/home_viewmodel.dart';
 
@@ -53,7 +55,9 @@ class _HomePageViewState extends State<HomePageView>
               ],
             ),
           )
-        : _buildLoadingCircular();
+        : viewModel.state == ViewState.busy
+            ? const CustomCircular()
+            : const NotConnectedNetwork();
   }
 
   Future getFirebase() async {
@@ -73,14 +77,6 @@ class _HomePageViewState extends State<HomePageView>
     "snorkling": "Dalış",
     "kayaking": "Kayak",
   };
-
-  Center _buildLoadingCircular() {
-    return const Center(
-      child: CircularProgressIndicator(
-        color: CustomColor.mainColor,
-      ),
-    );
-  }
 
   Container _buildDiscoverAllItem() {
     return Container(

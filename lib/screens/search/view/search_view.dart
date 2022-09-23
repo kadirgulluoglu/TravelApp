@@ -1,10 +1,13 @@
 import 'package:denemefirebaseauth/core/components/large_text.dart';
 import 'package:denemefirebaseauth/core/extension/context_extensions.dart';
 import 'package:denemefirebaseauth/init/theme/colors.dart';
+import 'package:denemefirebaseauth/product/components/custom_circular_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../product/components/not_connected_network.dart';
 import '../../../product/components/profile_picture_and_menu.dart';
+import '../../../product/enum/view_state.dart';
 import '../../home/viewmodel/home_viewmodel.dart';
 import '../../homepage/view/details_page_view.dart';
 
@@ -28,66 +31,72 @@ class _SearchViewState extends State<SearchView> {
   Widget build(BuildContext context) {
     final viewModel = Provider.of<HomeViewModel>(context);
 
-    return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const ProfilePictureAndMenuIcon(),
-          buildSearch(viewModel),
-          Expanded(
-            child: _searchController.text.isNotEmpty &&
-                    viewModel.searchList.isEmpty
-                ? Center(child: CustomLargeText(text: "Sonuç yok"))
-                : ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: viewModel.searchList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      int id = viewModel.searchList[index].placeId! - 1;
-                      return SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          height: 150,
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    ChangeNotifierProvider<HomeViewModel>.value(
-                                  value: viewModel,
-                                  child: DetailPageView(index: id),
-                                ),
-                              ));
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.only(
-                                  right: 15, top: 10, left: 15),
-                              width: 150,
-                              height: 200,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.circular(10), // Image border
-                                child: SizedBox.fromSize(
-                                  size:
-                                      const Size.fromRadius(30), // Image radius
-                                  child: Stack(
-                                    children: [
-                                      _buildImage(viewModel, index),
-                                      Container(
-                                          color: Colors.black.withOpacity(0.5)),
-                                      _buildOnImageWidget(viewModel, index, id),
-                                    ],
+    return viewModel.state == ViewState.idle
+        ? Scaffold(
+            body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const ProfilePictureAndMenuIcon(),
+              buildSearch(viewModel),
+              Expanded(
+                child: _searchController.text.isNotEmpty &&
+                        viewModel.searchList.isEmpty
+                    ? Center(child: CustomLargeText(text: "Sonuç yok"))
+                    : ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        itemCount: viewModel.searchList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          int id = viewModel.searchList[index].placeId! - 1;
+                          return SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              height: 150,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        ChangeNotifierProvider<
+                                            HomeViewModel>.value(
+                                      value: viewModel,
+                                      child: DetailPageView(index: id),
+                                    ),
+                                  ));
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.only(
+                                      right: 15, top: 10, left: 15),
+                                  width: 150,
+                                  height: 200,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(
+                                        10), // Image border
+                                    child: SizedBox.fromSize(
+                                      size: const Size.fromRadius(
+                                          30), // Image radius
+                                      child: Stack(
+                                        children: [
+                                          _buildImage(viewModel, index),
+                                          Container(
+                                              color: Colors.black
+                                                  .withOpacity(0.5)),
+                                          _buildOnImageWidget(
+                                              viewModel, index, id),
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ),
-                          ));
-                    },
-                  ),
-          ),
-        ],
-      ),
-    );
+                              ));
+                        },
+                      ),
+              ),
+            ],
+          ))
+        : viewModel.state == ViewState.busy
+            ? const CustomCircular()
+            : const NotConnectedNetwork();
   }
 
   Padding _buildOnImageWidget(HomeViewModel viewModel, int index, int id) {

@@ -1,10 +1,13 @@
 import 'package:denemefirebaseauth/core/extension/context_extensions.dart';
+import 'package:denemefirebaseauth/product/enum/view_state.dart';
 import 'package:denemefirebaseauth/screens/home/viewmodel/home_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/components/large_text.dart';
 import '../../../init/theme/colors.dart';
+import '../../../product/components/custom_circular_progress_indicator.dart';
+import '../../../product/components/not_connected_network.dart';
 import '../../../product/components/profile_picture_and_menu.dart';
 import '../../homepage/view/details_page_view.dart';
 
@@ -19,27 +22,33 @@ class _FavoriteViewState extends State<FavoriteView> {
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<HomeViewModel>(context);
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const ProfilePictureAndMenuIcon(),
-          _buildTextFavorite(),
-          viewModel.favoriteList.isNotEmpty
-              ? _buildListPlace(viewModel)
-              : Expanded(
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [CustomLargeText(text: "Favorilerim Boş")],
-                    ),
-                  ),
-                ),
-        ],
-      ),
-    );
+    return viewModel.state == ViewState.idle
+        ? Scaffold(
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const ProfilePictureAndMenuIcon(),
+                _buildTextFavorite(),
+                viewModel.favoriteList.isNotEmpty
+                    ? _buildListPlace(viewModel)
+                    : Expanded(
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              CustomLargeText(text: "Favorilerim Boş")
+                            ],
+                          ),
+                        ),
+                      ),
+              ],
+            ),
+          )
+        : viewModel.state == ViewState.busy
+            ? const CustomCircular()
+            : const NotConnectedNetwork();
   }
 
   Container _buildTextFavorite() {
