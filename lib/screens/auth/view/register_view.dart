@@ -3,7 +3,6 @@ import 'package:denemefirebaseauth/core/extension/context_extensions.dart';
 import 'package:denemefirebaseauth/screens/auth/viewmodel/auth_viewmodel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -408,9 +407,12 @@ class _RegisterViewState extends State<RegisterView> {
             },
           )
           .catchError((e) {
-        Fluttertoast.showToast(
-            msg:
-                "Daha Önceden Bu E-Posta İle Kayıt Yapılmıştır. Lütfen Farklı Bir E-Posta Adresi Giriniz.");
+        ScaffoldMessenger.of(context).showSnackBar(
+          CustomSnackBar(
+            contentText: "Mail kullanılmış isterseniz giriş yapın",
+            color: CustomColor.mainColor,
+          ),
+        );
         viewModel.changeLoading();
       });
     }
