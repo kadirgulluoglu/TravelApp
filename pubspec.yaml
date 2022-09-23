@@ -30,15 +30,26 @@ dependencies:
   flutter:
     sdk: flutter
 
-  firebase_core:
-  cloud_firestore:
-  firebase_auth:
-  fluttertoast:
-  shared_preferences:
-  provider:
-  dio:
   cupertino_icons: ^1.0.2
-  get_it:
+  #firebase
+  firebase_core: any
+  cloud_firestore: any
+  firebase_auth: any
+
+  #local storage
+  shared_preferences: any
+
+  #state management
+  provider: any
+
+  #network manager
+  dio: any
+
+  #lottie
+  lottie: ^1.4.3
+
+  #getit
+  get_it: any
 
 dev_dependencies:
   flutter_test:
@@ -65,6 +76,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/lottie/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
