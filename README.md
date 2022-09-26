@@ -3,7 +3,7 @@
 
 |**Onboarding Screen** |
 | -------------- | 
-|<img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/onboarding%20(2).png" width=22% height=33%> <img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/onboarding%20(1).png" width=22% height=33%> <img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/onboarding%20(3).png" width=22% height=33%>|
+|<img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/onboarding%20(2).png" width=25% height=33%> <img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/onboarding%20(1).png" width=25% height=33%> <img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/onboarding%20(3).png" width=25% height=33%>|
 
 
 |**Home Screen** |**Details Screen**|**Favorite Screen**|
