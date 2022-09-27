@@ -1,6 +1,12 @@
-# Travel App
-## I using provider,dio and get_it package
+# Travel App 
+## Packages I use:
 
+- [State Management: provider](https://pub.dev/packages/provider)
+- [Singleton: get_it](https://pub.dev/packages/get_it)
+- [Network: Dio](https://pub.dev/packages/dio)
+
+
+## Screenshots:
 |**Onboarding Screen** |
 | -------------- | 
 |<img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/onboarding%20(2).png" width=30% height=33%> <img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/onboarding%20(1).png" width=30% height=33%> <img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/onboarding%20(3).png" width=30% height=33%>|
