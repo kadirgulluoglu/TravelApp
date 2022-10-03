@@ -9,7 +9,7 @@
 ## Screenshots:
 |**Onboarding Screen** |
 | -------------- | 
-|<img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/onboarding%20(2).png" width=30% height=33%> <img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/onboarding%20(1).png" width=30% height=33%> <img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/onboarding%20(3).png" width=30% height=33%>|
+|<img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/onboarding.png" width=30% height=33%> <img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/onboarding1.png" width=30% height=33%> <img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/onboarding2.png" width=30% height=33%>|
 
 
 |**Home Screen** |**Details Screen**|**Favorite Screen**|
