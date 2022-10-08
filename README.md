@@ -14,11 +14,11 @@
 
 |**Home Screen** |**Details Screen**|**Favorite Screen**|
 | -------------- | ----------------- | ----------------- |
-|<img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/home.png" width=100% height=33%>|<img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/details.png" width=100% height=33%>|<img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/favorite.png" width=100% height=33%>|
+|<img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/home.png" width=100%>|<img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/details.png" width=100%>|<img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/favorite.png" width=100%%>|
 
 |**Search Screen** |**Not Connected Screen**|
 | ---------------- | ---------------------- |
-|<img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/search.png" width=80% height=33%>|<img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/network.png" width=80% height=33%>|
+|<img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/search.png" width=80% >|<img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/network.png" width=80% >|
 
 | **App Gif**|
 | ------------ |
