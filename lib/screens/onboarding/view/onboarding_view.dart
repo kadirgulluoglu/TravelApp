@@ -1,5 +1,3 @@
-import 'package:denemefirebaseauth/screens/auth/view/login_view.dart';
-import 'package:denemefirebaseauth/screens/auth/viewmodel/auth_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,6 +6,8 @@ import '../../../core/components/large_text.dart';
 import '../../../core/components/text.dart';
 import '../../../init/theme/colors.dart';
 import '../../../product/components/responsive_button.dart';
+import '../../auth/view/login_view.dart';
+import '../../auth/viewmodel/auth_viewmodel.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({Key? key}) : super(key: key);
