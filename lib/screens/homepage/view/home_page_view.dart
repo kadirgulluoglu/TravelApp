@@ -45,12 +45,12 @@ class _HomePageViewState extends State<HomePageView>
               children: [
                 const ProfilePictureAndMenuIcon(),
                 _buildTextDiscover(),
-                const SizedBox(height: 10),
+                SizedBox(height: context.height * .03),
                 _buildTabBar(),
                 _buildTabBarView(viewModel),
-                const SizedBox(height: 30),
+                SizedBox(height: context.height * .05),
                 _buildDiscoverAllText(),
-                const SizedBox(height: 10),
+                SizedBox(height: context.height * .01),
                 _buildDiscoverAllItem()
               ],
             ),
