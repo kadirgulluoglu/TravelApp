@@ -36,9 +36,5 @@ class _HomeViewState extends State<HomeView> {
   }
 
   BottomNavigationBarItem _buildBottomItem(String title, IconData icon) =>
-      BottomNavigationBarItem(
-          label: title,
-          icon: Icon(
-            icon,
-          ));
+      BottomNavigationBarItem(label: title, icon: Icon(icon));
 }
