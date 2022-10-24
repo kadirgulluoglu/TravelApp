@@ -22,4 +22,4 @@
 
 | **App Gif**|
 | ------------ |
-|<img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/TravelApp.gif" width=100% height=100%>|
+|<img src="https://github.com/kadirgulluoglu/TravelApp/blob/main/assets/screenshots/TravelApp.gif" width=50% height=50%>|
